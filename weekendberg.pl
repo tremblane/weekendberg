@@ -13,7 +13,7 @@ my $refresh_cycle = 15; #seconds between refreshes
 
 my $username = $ENV{'USER'};
 my $url = "http://wwwin.cisco.com/cgi-bin/support/tools/iceberg6/iceberg6_buildxml.cgi?agentid=$username";
-my $tempfile = "/tmp/engberg-$username.xml";
+my $tempfile = "/tmp/weekendberg-$username.xml";
 
 print "CEC password for $username: ";
 system("stty -echo");
