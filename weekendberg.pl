@@ -76,6 +76,7 @@ sub parse_and_display {
 	undef %analyst_time;
 	undef %analyst_time_seconds;
 	undef %analyst_toas;
+	undef %analyst_toas_skill;
 	undef @analyst_talking;
 	undef @analyst_idle;
 	undef @analyst_ready;
@@ -115,6 +116,7 @@ sub parse_and_display {
 		#flag if not talking on Eng
 		if ($analyst->{talkingon} !~ m/GTRC_ENG/) {
 			$analyst_toas{$analyst->{userid}} = "true";
+			$analyst_toas_skill{$analyst->{userid}} = $analyst->{talkingon};
 		}
 	}
 
@@ -293,5 +295,11 @@ sub parse_and_display {
 	if ($eng_staffing eq "LOW" || $eng_staffing eq "UNSTAFFED") {
 		print "\a";
 		print "\n***ALERT: Eng staffing is $eng_staffing***\n";
+	}
+
+	print "\n";
+
+	foreach my $analyst ( sort keys %analyst_toas ) {
+		printf("%-10s talking on %s\n",$analyst,$analyst_toas_skill{$analyst});
 	}
 } ## --- end sub parse_and_display
